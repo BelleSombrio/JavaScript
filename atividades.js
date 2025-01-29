@@ -242,47 +242,95 @@ function converterDiasSemana() {
 
 
 function cobrançaComercio() {
-    const preco = parseFloat (prompt('Qual o valor da sua compra?'));
-    const pagamento = parseInt (prompt('Digite o número que corresponde a forma de pagamento desejada. 1- crédito. 2- Débito. 3- Pix. 4-Boleto.'));
-    const desconto = prompt('Você tem cupom de desconto? Se sim digite o nome dele.');
-    const frete = prompt('Você deseja o frete normal ou expresso? Se for frete normal digite 1. se for expresso digite 2.');
-    const DEBITO = 2, CREDITO = 1, PIX = 3, BOLETO = 4;
-    const FRETENORMAL = 1, FRETEEXPRESSO = 2;
-    let total;
+    const preco = parseFloat(prompt('Informe o valor da sua compra'));
+    let total = preco + calcularFormaPgto(preco);
+    console.log('Total com forma de pagamento:' +total);
+    total -= calcularDesconto(preco);
+    console.log('Total com cupom:'+total);
+    total += calcularFrete();
+    console.log('Total com frete:'+total);
+    alert('Rotal da compra: R$'+total);
+}
 
+function calcularFormaPgto(preco) {
+    const pagamento = parseInt(prompt('Digite o número que corresponde a forma de pagamento desejada. 1- crédito. 2- Débito. 3- Pix. 4-Boleto.'));
+    const CREDITO = 1, DEBITO = 2, PIX = 3, BOLETO = 4;
     switch (pagamento) {
         case CREDITO:
-      total = preco + (preco * 0.02);
-            break;
+            return (preco * 0.02);
+
         case DEBITO:
-            total =   preco - (preco * 0.05)
-            break;
+            return - (preco * 0.05)
+
         case PIX:
-            total =    preco - (preco * 0.1);
-            break;
+            return - (preco * 0.1);
+
         case BOLETO:
-            total = preco;
-            break;
+            return 0;
+
         default: {
             alert('número inválido');
         }
     }
-    
-const valorDesconto = desconto.substring(0,2);
-  if  (!isNaN (valorDesconto)) {
-    //extrair o numero, fazer cálculo de % do preço, diminuir do total.
-  valorDesconto * preco / 100 ;
-  total = total - (valorDesconto * preco / 100);
-  }
-    
-  switch (frete) {
- case PADRAO: 
-     preco + 10;
-     break;
-     case EXPRESSO:
-        preco + 20;
-        break;
-  }
-
-alert (total);
 }
+
+function calcularDesconto(preco) {
+    const desconto = prompt('Você tem cupom de desconto? Se sim digite o nome dele. Se não deixe este campo em branco.');
+    const valorDesconto = desconto.substring(0, 2);
+    if (verificarCuponValido(valorDesconto)) {
+        return (valorDesconto * preco / 100);
+    }
+    return 0;
+
+}
+
+function verificarCuponValido(valorDesconto) {
+    return !isNaN(valorDesconto);
+    // isNaN is not a number e com o ! fica é um número.
+    //extrair o numero, fazer cálculo de % do preço, diminuir do total
+}
+
+function calcularFrete() {
+    const frete = parseInt(prompt('Você deseja o frete normal ou expresso? Se for frete normal digite 1. se for expresso digite 2.'));
+    const fretenormal = 1, freteesxpresso = 2;
+
+    switch (frete) {
+        case fretenormal:
+            return 10;
+          
+        case freteesxpresso:
+            return 20;
+       
+    }
+    return 0;
+}
+
+function testeFor() {
+    for (let contador = 0; contador < 10; contador++) {
+        console.log(contador);
+    }
+}
+
+function testeWhile() {
+    let numero = 0;
+    while (!isNaN(numero)) {
+         numero = prompt('informe apenas números');
+    }
+    alert('Você não digitou um número.\nAplicação encerrada');
+}
+
+function umdezFor() {
+    for (let contador = 1; contador <=10; contador++){
+        console.log(contador);
+    }
+}
+
+function umdezWhile(){
+    let contador = 1;
+    while (contador =10){
+        console.log(contador);
+        contador++
+    }
+
+}
+
