@@ -334,3 +334,42 @@ function umdezWhile(){
 
 }
 
+
+
+function arrayteste() {
+    let array = [];
+   for (let contador =1; contador <=10; contador++){
+    array.push(prompt('Informe um número'));
+
+
+   }
+   console.log(array)
+}
+
+
+function realizarLoginUsuario() {
+    const usuarios = ['tamires@@', 'marco123','gaby77'];
+    const senhas = ['123','aab2','a57'];
+    let usuarioLogin =prompt('Informe seu usuário de login');
+    let senhaLogin =prompt('Informe a sua senha');
+    let fezLogin = false;
+
+    for(let i=0; i < usuarios.length; i++) {
+        if (usuarios[i] == usuarioLogin && senhas[i] == senhaLogin) {
+            fezLogin = true;
+            alert('Login realizado');
+            break;
+        }
+
+    }
+    if (!fezLogin) {
+        alert('Usuário ou senha inválido. Tente novamente');
+    }
+}
+
+
+function contadordeletras() {
+    const palavras = ['Iguana', 'Golfinho', 'Cachorro'];
+
+    palavras.forEach(letras => console.log('A palavra ' +letras+ ' tem ' +letras.length+ ' palavras.'));
+}
