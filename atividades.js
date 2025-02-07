@@ -373,3 +373,4 @@ function contadordeletras() {
 
     palavras.forEach(letras => console.log('A palavra ' +letras+ ' tem ' +letras.length+ ' palavras.'));
 }
+
