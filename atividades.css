@@ -1,0 +1,11 @@
+.escondido {
+    visibility: hidden;
+}
+
+.bt-escondido {
+    color : blue
+}
+
+.bt-mostrar {
+    color: violet 
+}
